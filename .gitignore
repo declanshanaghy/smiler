@@ -2,7 +2,14 @@
 .idea
 smiler.iml
 
+# vendor dirs but include govendor manifest
+vendor/*/*
+!vendor/vendor.json
+
 # All swagger auto-generated stuff
 cmd/
 models/
-restapi/
+client/
+# All files in restapi except the configure files
+restapi/*
+!restapi/configure_*.go

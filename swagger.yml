@@ -25,6 +25,7 @@ paths:
     post:
       tags:
         - flash
+      operationId: initiateFlash
       parameters:
         - name: freq
           in: formData
