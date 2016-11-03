@@ -1,3 +1,8 @@
 # Project files
 .idea
 smiler.iml
+
+# All swagger auto-generated stuff
+cmd/
+models/
+restapi/
