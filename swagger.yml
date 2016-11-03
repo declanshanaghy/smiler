@@ -1,0 +1,41 @@
+swagger: "2.0"
+info:
+  description: The internet controllable smiley sign
+  title: Smiley
+  version: 1.0.0
+consumes:
+  - application/com.shanaghy.smiley.v1+json
+produces:
+  - application/com.shanaghy.smiley.v1+json
+schemes:
+  - http
+definitions:
+  error:
+    type: object
+    required:
+      - message
+    properties:
+      code:
+        type: integer
+        format: int64
+      message:
+        type: string
+paths:
+  /flash:
+    post:
+      tags:
+        - flash
+      parameters:
+        - name: freq
+          in: formData
+          type: integer
+          format: int64
+          default: 20
+          description: The frequency (in Hz) to flash the lights
+      responses:
+        204:
+          description: The request was accepted successfully
+        default:
+          description: generic error response
+          schema:
+            $ref: "#/definitions/error"
