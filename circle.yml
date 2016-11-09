@@ -8,5 +8,5 @@ machine:
 dependencies:
   override:
     - mkdir -p $GO_SRC/$ORG_PATH
-    - ln -s $HOME/$CIRCLE_PROJECT_REPONAME $GO_SRC/$IMPORT_PATH"
+    - ln -s $HOME/$CIRCLE_PROJECT_REPONAME $GO_SRC/$IMPORT_PATH
     - go generate
