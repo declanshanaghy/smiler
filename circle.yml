@@ -1,9 +1,12 @@
 machine:
   environment:
-    IMPORT_PATH: "github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
+    GO_WORKSPACE: "$HOME/.go_workspace"
+    GO_SRC: "$GO_WORKSPACE/src"
+    ORG_PATH: "github.com/$CIRCLE_PROJECT_USERNAME"
+    IMPORT_PATH: "$ORG_PATH/$CIRCLE_PROJECT_REPONAME"
 
 dependencies:
   override:
-    - mkdir -p "$GOPATH/src/$IMPORT_PATH"
-    - rsync -azC --delete ./ "$GOPATH/src/$IMPORT_PATH/"
+    - mkdir -p $GO_SRC/$ORG_PATH
+    - ln -s $HOME/$CIRCLE_PROJECT_REPONAME $GO_SRC/$IMPORT_PATH"
     - go generate
