@@ -1,4 +1,4 @@
-package restimpl
+package framework
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/declanshanaghy/smiler/log"
+	"github.com/declanshanaghy/smiler/framework/log"
 )
 
 type IError interface {

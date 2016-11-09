@@ -1,4 +1,4 @@
-package restimpl
+package framework
 
 import (
 	"github.com/declanshanaghy/smiler/models"

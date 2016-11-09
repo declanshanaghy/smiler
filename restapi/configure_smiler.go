@@ -7,12 +7,12 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
+	"github.com/go-openapi/swag"
 
+	"github.com/declanshanaghy/smiler/framework"
+	"github.com/declanshanaghy/smiler/framework/log"
 	"github.com/declanshanaghy/smiler/restapi/operations"
 	"github.com/declanshanaghy/smiler/restapi/operations/flash"
-	"github.com/declanshanaghy/smiler/restimpl"
-	"github.com/go-openapi/swag"
-	"github.com/declanshanaghy/smiler/log"
 )
 
 // This file is safe to edit. Once it exists it will not be overwritten
@@ -49,7 +49,7 @@ func configureAPI(api *operations.SmilerAPI) http.Handler {
 	api.JSONProducer = runtime.JSONProducer()
 
 	api.FlashGetFlashStateHandler = flash.GetFlashStateHandlerFunc(func(params flash.GetFlashStateParams) middleware.Responder {
-		return restimpl.HandleApiRequestWithError(restimpl.NewFlashMgr().GetFlash())
+		return framework.HandleApiRequestWithError(framework.NewFlashMgr().GetFlash())
 	})
 	api.FlashSetFlashStateHandler = flash.SetFlashStateHandlerFunc(func(params flash.SetFlashStateParams) middleware.Responder {
 		return middleware.NotImplemented("operation flash.SetFlashState has not yet been implemented")
