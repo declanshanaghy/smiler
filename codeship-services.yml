@@ -1,0 +1,4 @@
+smiler:
+  build:
+    image: dshanaghy/smiler
+    dockerfile_path: Dockerfile
