@@ -1,42 +1,76 @@
 swagger: "2.0"
 info:
   description: The internet controllable smiley sign
-  title: Smiley
+  title: Smiler
   version: 1.0.0
 consumes:
-  - application/com.shanaghy.smiley.v1+json
+  - application/com.shanaghy.smiler.v1+json
 produces:
-  - application/com.shanaghy.smiley.v1+json
+  - application/com.shanaghy.smiler.v1+json
 schemes:
   - http
 definitions:
-  error:
+  Error:
     type: object
     required:
+      - code
       - message
     properties:
       code:
         type: integer
-        format: int64
       message:
         type: string
+
+  FlashState:
+    type: object
+    required:
+      - freq
+    properties:
+      freq:
+        type: integer
+
 paths:
-  /flash:
-    post:
+  /authd:
+    get:
+      operationId: "GetFlashState"
       tags:
         - flash
-      operationId: initiateFlash
+      responses:
+        200:
+          description: The request was accepted successfully
+          schema:
+            $ref: "#/definitions/FlashState"
+        default:
+          description: generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /flash:
+    get:
+      operationId: "GetFlashState"
+      tags:
+        - flash
+      responses:
+        200:
+          description: The request was accepted successfully
+          schema:
+            $ref: "#/definitions/FlashState"
+        default:
+          description: generic error response
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      operationId: "SetFlashState"
+      tags:
+        - flash
       parameters:
-        - name: freq
-          in: formData
-          type: integer
-          format: int64
-          default: 20
-          description: The frequency (in Hz) to flash the lights
+        - name: body
+          in: body
+          schema:
+            $ref: "#/definitions/FlashState"
       responses:
         204:
           description: The request was accepted successfully
         default:
           description: generic error response
           schema:
-            $ref: "#/definitions/error"
+            $ref: "#/definitions/Error"

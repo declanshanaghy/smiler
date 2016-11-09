@@ -10,6 +10,7 @@ package smile
 //go:generate go get -u github.com/kardianos/govendor
 //go:generate echo "* fixing dependencies..."
 //go:generate govendor fetch +missing
+//go:generate govendor add +external
 //go:generate govendor sync
 //go:generate govendor remove +unused
 //go:generate echo "* success"
